@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проект</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="LapWingHub" width="50" height="50" class="logo">
+        <nav>
+            <a href="index2.html" target="_blank">Products</a>
+            <a href="#">My Orders</a>
+            <a href="#">Contacts</a>
+            <a href="#">Support</a>
+            <input type="checkbox" id="language-toggle" class="language-toggle">
+            <label for="language-toggle" class="language-label">Global</label>
+            <div class="language-dropdown">
+                <ul>
+                    <li><a href="#ukrainian">Українська</a></li>
+                    <li><a href="#english">English</a></li>
+                </ul>
+            </div>
+        </nav>
+        <button class="login-button" id="login-button">Login</button>
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="menu-label">Menu</label>
+        <div class="menu-dropdown">
+            <ul>
+                <li><a href="index2.html" target="_blank">Products</a></li>
+                <li><a href="#">My Orders</a></li>
+                <li><a href="#">Contacts</a></li>
+                <li><a href="#">Support</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="login-form" id="login-form">
+        <span class="close-button" id="close-button">×</span>
+        <h2>Entrance</h2><hr></hr>
+        <form>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" placeholder="Enter your email">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
+            <button type="submit">Enter</button>
+        </form>
+        <p>Don't have an account? <a href="#" id="register-link">Register</a></p>
+    </div>
+    <div class="register-form" id="register-form">
+        <span class="close-button" id="close-button">×</span>
+        <h2>Register</h2><hr></hr>
+        <form>
+            <label for="new-email">New Email:</label>
+            <input type="text" id="new-email" name="new-email" placeholder="Enter your new email">
+            <label for="new-password">New Password:</label>
+            <input type="password" id="new-password" name="new-password" placeholder="Enter your new password">
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="#" id="login-link">Login</a></p>
+    </div>
+    <main>
+        <div class="animaton-slayda">
+            <input type="radio" name="slide" id="one" checked>
+            <input type="radio" name="slide" id="two">
+            <input type="radio" name="slide" id="three">
+            <input type="radio" name="slide" id="four">
+            <input type="radio" name="slide" id="five">
+            <div class="img snimok_1">
+                <img src="laptop11.jpg" alt="1">
+            </div>
+            <div class="img snimok_2">
+                <img src="laptop22.jpg" alt="2">
+            </div>
+            <div class="img snimok_3">
+                <img src="laptop33.jpg" alt="3">
+            </div>
+            <div class="img snimok_4">
+                <img src="laptop44.jpg" alt="4">
+            </div>
+            <div class="img snimok_5">
+                <img src="laptop55.jpg" alt="5">
+            </div>
+            <div class="karuselka-sladena">
+                <label for="one" class="one"></label>
+                <label for="two" class="two"></label>
+                <label for="three" class="three"></label>
+                <label for="four" class="four"></label>
+                <label for="five" class="five"></label>
+            </div>
+        </div>
+        <section>
+            <header class="header2">
+                <nav>
+                    <div class="left-content">
+                        <h1 class="LapWingHub">LapWingHub</h1>
+                        <h3>Quality products don't always</h3>
+                        <h3>require a high price. Everyone has</h3>
+                        <h3>the opportunity to enjoy the </h3>
+                        <h3>pleasures of technology.</h3>
+                    </div>
+                    <div class="center-content">
+                        <a href="products-proj.html" target="_blank">PRODUCTS</a>
+                        <a href="#">ABOUT US</a>
+                        <a href="#">CONTACTS</a>
+                        <a href="#">SUPPORT</a>
+                    </div>
+                </nav>
+            </header>
+        </section>
+    </main>
+    <script>
+        const loginButton = document.getElementById('login-button');
+        const loginForm = document.getElementById('login-form');
+        const registerLink = document.getElementById('register-link');
+        const registerForm = document.getElementById('register-form');
+        const loginLink = document.getElementById('login-link');
+        const closeButtons = document.querySelectorAll('.close-button');
+        loginButton.addEventListener('click', () => {
+            loginForm.style.display = 'block';
+            registerForm.style.display = 'none';
+        });
+
+        registerLink.addEventListener('click', () => {
+            registerForm.style.display = 'block';
+            loginForm.style.display = 'none';
+        });
+
+        loginLink.addEventListener('click', () => {
+            loginForm.style.display = 'block';
+            registerForm.style.display = 'none';
+        });
+
+        closeButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'none';
+            });
+        });
+    </script>
+    <script>
+
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+        const images = document.querySelectorAll('.img');
+
+
+        let currentIndex = 0;
+        let autoScrollInterval;
+
+
+        function changeImage() {
+            images[currentIndex].style.opacity = 0;
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].style.opacity = 1;
+            radioButtons[currentIndex].checked = true;
+        }
+
+
+        autoScrollInterval = setInterval(changeImage, 7000);
+
+
+        radioButtons.forEach((radioButton, index) => {
+            radioButton.addEventListener('click', () => {
+                clearInterval(autoScrollInterval);
+                currentIndex = index;
+                images.forEach((image, i) => {
+                    image.style.opacity = i === currentIndex ? 1 : 0;
+                });
+
+                autoScrollInterval = setInterval(changeImage, 7000);
+            });
+        });
+    </script>
+</body>
+</html>
